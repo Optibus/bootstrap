@@ -3,8 +3,12 @@
 #! nix-shell -p git curl openssh
 #! nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/2a601aafdc5605a5133a2ca506a34a3a73377247.tar.gz
 
-mkdir ~/dev
 git --version
+
+if [ ! -d ~/dev ]; then
+    echo "Creating ~/dev directory..."
+    mkdir -p ~/dev
+fi
 
 if [ -f ~/.ssh/id_ed25519.pub ]; then
   echo "Public SSH key already exist in ~/.ssh/id_ed25519.pub". Trying to use it....
